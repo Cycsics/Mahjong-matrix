@@ -8,13 +8,14 @@ from django.conf.urls.static import static
 import notifications.urls
 
 from addiction.views import addiction_list
+from . import views
 
 
 # 存放了映射关系的列表
 urlpatterns = [
     path('admin/', admin.site.urls),
     # home
-    path('', addiction_list, name='home'),
+    path('', views.get_homepage, name='home'),
     # 重置密码app
     path('password-reset/', include('password_reset.urls')),
     # 新增代码，配置app的url

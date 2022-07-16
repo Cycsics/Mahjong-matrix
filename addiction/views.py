@@ -32,7 +32,6 @@ from django.views.generic.edit import CreateView
 # logging.config.dictConfig(LOGGING)
 # logger = logging.getLogger('django.request')
 
-
 # 文章列表
 def addiction_list(request):
     # 从 url 中提取查询参数
