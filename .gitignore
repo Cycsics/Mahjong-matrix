@@ -1,0 +1,6 @@
+﻿.idea/
+venv/
+.history
+blog
+__pycache__
+md
