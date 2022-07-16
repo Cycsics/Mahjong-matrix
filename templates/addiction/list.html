@@ -42,9 +42,11 @@
                 >
             </form>
         </div>
-        <div>
-            <a class="btn btn-primary" href="{% url 'addiction:addiction_create' %}">Create</a>
-        </div>
+        {% if user.is_superuser %}
+            <div>
+                <a class="btn btn-primary" href="{% url 'addiction:addiction_create' %}">Create</a>
+            </div>
+        {% endif %}
     </div>
 
     <!-- 搜索提示语 -->
@@ -118,7 +120,7 @@
                         <!--
                         {{ addiction.created|date:'Y-m-d' }}
                         -->
-                        {{ addiction.created|timesince_zh }}
+                        {{ addiction.created }}
                     </span>
                 </p>
             </div>
