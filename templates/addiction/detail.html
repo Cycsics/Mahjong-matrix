@@ -4,7 +4,7 @@
 
 <!-- 写入 base.html 中定义的 title -->
 {% block title %}
-文章详情
+Article details
 {% endblock title %}
 
 <!-- 写入 base.html 中定义的 content -->
@@ -121,11 +121,7 @@
             {% else %}
                 <br>
                 <h5 class="row justify-content-center">
-<<<<<<< HEAD
                     Please <a href="{% url 'userprofile:login' %}">sigh in</a>before reply.
-=======
-                    请<a href="{% url 'account_login' %}">登录</a>后回复
->>>>>>> 08299ced4fbbe4ec2cf3d8bb56a77f27bd0804e1
                 </h5>
                 <br>
             {% endif %}

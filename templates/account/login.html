@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block title %}登录{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -15,15 +15,11 @@
 
             {% if socialaccount_providers %}
             <p>
-                {% blocktrans with site.name as site_name %}Please sign in or<a href="{{ signup_url }}">Sign up</a>a new account。
+                {% blocktrans with site.name as site_name %}Please sign in or <a href="{{ signup_url }}">Sign up</a> a new account.{% endblocktrans %}
             </p>
 
             <div class="socialaccount_ballot">
-                <h5 class="mb-2 mt-4">第三方登录：</h5>
-                <ul class="socialaccount_providers">
-                  {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-                </ul>
-                <h5 class="mb-2 mt-4">Local login</h5>
+                <h5 class="mb-2 mt-4">Login</h5>
             </div>
 
             {% comment %} {% include "socialaccount/snippets/login_extra.html" %} {% endcomment %}
@@ -64,7 +60,7 @@
                             Stay logged in
                         </label>
                     </div>
-                    <button class="primaryAction btn btn-primary" type="submit" id="submit_login">SUbmit</button>
+                    <button class="primaryAction btn btn-primary" type="submit" id="submit_login">Submit</button>
                 </form>
             </div>
         </div>

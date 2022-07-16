@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block title %}登录{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
 
@@ -18,20 +18,20 @@
                 {% comment %} {{ form.as_p }} {% endcomment %}
                 {% comment %} {% if redirect_field_value %} {% endcomment %}
                 <label for="id_username">Username:</label>
-                <input type="text" name="username" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                <input type="text" name="username" placeholder="Please enter Username or Email" autofocus="autofocus" required
                             id="id_username" class="form-control" />
                 <label for="id_email">Email(optional):</label>
-                <input type="email" name="email" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                <input type="email" name="email" placeholder="Please enter your Email" autofocus="autofocus" required
                             id="id_email" class="form-control" />
                 <label for="id_password1">Password:</label>
-                <input type="password" name="password1" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                <input type="password" name="password1" placeholder="Please enter your password" autofocus="autofocus" required
                                         id="id_password1" class="form-control" />
                 <label for="id_password2">Comfirm Password:</label>
-                <input type="password" name="password2" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                <input type="password" name="password2" placeholder="Please enter your password again" autofocus="autofocus" required
                                         id="id_password2" class="form-control" />
                 {% comment %} {% endif %} {% endcomment %}
                 <br>
-                <button class="primaryAction btn btn-primary" type="submit" id="submit_login">确认</button>
+                <button class="primaryAction btn btn-primary" type="submit" id="submit_login">Submit</button>
             </form>
         </div>
     </div>

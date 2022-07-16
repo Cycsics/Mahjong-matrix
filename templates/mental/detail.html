@@ -4,7 +4,7 @@
 
 <!-- 写入 base.html 中定义的 title -->
 {% block title %}
-文章详情
+Article details
 {% endblock title %}
 
 <!-- 写入 base.html 中定义的 content -->
@@ -20,7 +20,7 @@
             <h1 class="mt-4 mb-4">{{ mental.title }}</h1>
             <div class="alert alert-success">
                 <div>
-                    作者：{{ mental.author }}
+                    Author：{{ mental.author }}
                     {% if user == mental.author %}
 
                         <!-- · <a href="#" onclick="confirm_delete()">删除文章</a> -->
@@ -41,7 +41,7 @@
                     {% endif %}
                 </div>
                 <div>
-                    浏览：{{ mental.total_views }}
+                    visits：{{ mental.total_views }}
                 </div>
             </div>
             <!-- 文章正文 -->
@@ -121,11 +121,7 @@
             {% else %}
                 <br>
                 <h5 class="row justify-content-center">
-<<<<<<< HEAD
                     Please reply after <a href="{% url 'userprofile:login' %}">login</a> .
-=======
-                    请<a href="{% url 'account_login' %}">登录</a>后回复
->>>>>>> 08299ced4fbbe4ec2cf3d8bb56a77f27bd0804e1
                 </h5>
                 <br>
             {% endif %}
