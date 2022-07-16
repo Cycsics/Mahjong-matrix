@@ -18,12 +18,12 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{% url 'addiction:addiction_list' %}?search={{ search }}&column={{ column }}&tag={{ tag }}">
-                    最新
+                    Latest
                 </a>
             </li>
             <li class="breadcrumb-item">
                 <a href="{% url 'addiction:addiction_list' %}?order=total_views&search={{ search }}&column={{ column }}&tag={{ tag }}">
-                    最热
+                    Hottest
                 </a>
             </li>
         </ol>
@@ -49,15 +49,15 @@
 
     <!-- 搜索提示语 -->
     {% if search %}
-        {% if addictions %}
-            <h4><span style="color: red">"{{ search }}"</span>的搜索结果如下：</h4>
+        {% if mentals %}
+            <h4>The result of the search is: <span style="color: rgb(16, 15, 107)">"{{ search }}"</span></h4>
             <hr>        
         {% else %}
-            <h4>暂无<span style="color: red">"{{ search }}"</span>有关的文章。</h4>
+            <h4>There is no articles about <span style="color: rgb(16, 15, 107)">"{{ search }}"</span></h4>
             <hr>
         {% endif %}
     {% endif %}
-        
+
     <!-- 列表循环 -->
     <div class="row mt-2">
         {% for addiction in addictions %}
@@ -74,23 +74,6 @@
             {% endif %}
 
             <div class="col">
-                <!-- 栏目 -->
-                {% if addiction.column %}
-                    <a  role="button" 
-                        href="{% url 'addiction:addiction_list' %}?column={{ addiction.column.id }}"
-                        class="btn btn-sm mb-2
-                            {% if addiction.column.title == 'Django' %}
-                                btn-success
-                            {% elif addiction.column.title == 'Java' %}
-                                btn-danger
-                            {% elif addiction.column.title == 'HTML' %}
-                                btn-warning
-                            {% endif %}
-                        "
-                    >
-                        {{ addiction.column }}
-                    </a>
-                {% endif %}
 
                 <!-- 标签 -->
                 <span>
