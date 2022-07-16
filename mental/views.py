@@ -122,7 +122,7 @@ def mental_detail(request, id):
     mental.body = md.convert(mental.body)
 
     # 为评论引入表单
-    comment_form = CommentForm_mental()()
+    comment_form = CommentForm_mental()
 
     # 需要传递给模板的对象
     context = { 
