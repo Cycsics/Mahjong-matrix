@@ -1,23 +1,29 @@
 {% load notifications_tags %}
 {% notifications_unread as unread_count %}
+{% load static %}
 
 <!-- 定义导航栏 -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div id="wrapper" class="home-page" >
+<nav class="navbar navbar-expand-lg navbar-default navbar-static-top" style="background-color:black;">
     <div class="container">
         <!-- 导航栏商标 -->
-        <a class="navbar-brand" href="{% url 'home' %}">Matrix</a>
-        <!-- 导航入口 -->
+        <a class="navbar-header" href="{% url 'home' %}">Healcare for Social Media Issues</a>
+
         <div>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'addiction:addiction_list' %}">Addiction</a>
-                    <a class="nav-link" href="{% url 'mental:mental_list' %}">Mental</a>
-                </li>
+            <ul class="navbar-collapse collapse ">
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <a class="navbar-brand" href="{% url 'addiction:addiction_list' %}">Articles</a>
+                        <a class="navbar-brand" href="{% url 'mental:mental_list' %}">Forum</a>
+                        <a class="navbar-brand" href="{% url 'mental:mental_list' %}">Contact us</a>
+                    </ul>
+                </div>
+
 
                 <!-- Django的 if 模板语句 -->
                 {% if user.is_authenticated %}
                     <!-- 如果用户已经登录，则显示用户名下拉框 -->
-                    <li class="nav-item dropdown">
+                    <ul class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if unread_count %}
                                 <svg viewBox="0 0 8 8"
@@ -42,12 +48,12 @@
                             <a class="dropdown-item" href="#" onclick="user_delete()">User Delete</a>
                             <a class="dropdown-item" href='{% url "userprofile:logout" %}'>Logout</a>
                         </div>
-                    </li>
+                    </ul>
                 <!-- 如果用户未登录，则显示 “登录” -->
                 {% else %}
-                    <li class="nav-item">
+                    <ul class="nav-item">
                         <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                    </li>
+                    </ul>
                 <!-- if 语句在这里结束 -->
                 {% endif %}
             </ul>
