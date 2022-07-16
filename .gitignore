@@ -4,3 +4,4 @@ venv/
 blog
 __pycache__
 md
+*.sqlite3
