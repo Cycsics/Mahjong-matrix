@@ -4,10 +4,10 @@
 
 <!-- 定义导航栏 -->
 <div id="wrapper" class="home-page" >
-<nav class="navbar navbar-expand-lg navbar-default navbar-static-top" style="background-color:black;">
+<nav class="navbar navbar-expand-lg navbar-default navbar-static-top" style="background-color:rgba(110, 139, 61, 0.7 );">
     <div class="container">
         <!-- 导航栏商标 -->
-        <a class="navbar-header" href="{% url 'home' %}">Healcare for Social Media Issues</a>
+        <a class="navbar-header" href="{% url 'home' %}" >Healcare for Social Media Issues</a>
 
         <div>
             <ul class="navbar-collapse collapse ">
@@ -51,9 +51,11 @@
                     </ul>
                 <!-- 如果用户未登录，则显示 “登录” -->
                 {% else %}
-                    <ul class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                    </ul>
+                    <div class="navbar-collapse collapse ">
+                        <ul class="nav navbar-nav">
+                            <a class="navbar-brand" href="{% url 'account_login' %}">Login</a>
+                        </ul>
+                    </div>
                 <!-- if 语句在这里结束 -->
                 {% endif %}
             </ul>
@@ -85,3 +87,9 @@
         }
     </script>
 {% endif %}
+
+<style>
+    a {
+        color:white;
+    }
+</style>
