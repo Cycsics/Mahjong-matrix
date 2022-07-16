@@ -12,19 +12,6 @@ from taggit.managers import TaggableManager
 # 处理图片
 from PIL import Image
 
-class AddictionColumn(models.Model):
-    """
-    文章栏目的 Model
-    """
-    # 栏目标题
-    title = models.CharField(max_length=100, blank=True)
-    
-    # 创建时间
-    created = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return self.title
-
 
 # Django中所有的模型(Model)都必须继承django.db.models.Model模型，即顶部的导入
 # 建立博客文章类 class Addiction，处理与文章有关的数据，它包含需要的字段和保存数据的行为
@@ -39,16 +26,7 @@ class AddictionPost(models.Model):
 
     # 文章标题图
     avatar = models.ImageField(upload_to='addiction/%Y%m%d/', blank=True)
-
-    # 文章栏目的 “一对多” 外键
-    column = models.ForeignKey(
-        AddictionColumn,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE,
-        related_name='addiction'
-    )
-
+    
     # 文章标签
     # 采用 Django-taggit 库
     tags = TaggableManager(blank=True)

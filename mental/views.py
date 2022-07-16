@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 # 引入HttpResponse
 from django.http import HttpResponse
-# 导入数据模型MentalPost, MentalColumn
-from .models import MentalPost, MentalColumn
+# 导入数据模型MentalPost
+from .models import MentalPost
 # 引入刚才定义的MentalPostForm表单类
 from .forms import MentalPostForm
 # 引入markdown模块
@@ -38,7 +38,6 @@ def mental_list(request):
     # 从 url 中提取查询参数
     search = request.GET.get('search')
     order = request.GET.get('order')
-    column = request.GET.get('column')
     tag = request.GET.get('tag')
 
     # 初始化查询集
@@ -54,9 +53,6 @@ def mental_list(request):
         # 将 search 参数重置为空
         search = ''
 
-    # 栏目查询集
-    if column is not None and column.isdigit():
-        mental_list = mental_list.filter(column=column)
 
     # 标签查询集
     if tag and tag != 'None':
@@ -78,7 +74,6 @@ def mental_list(request):
         'mentals': mentals,
         'order': order,
         'search': search,
-        'column': column,
         'tag': tag,
     }
     # render函数：载入模板，并返回context对象
@@ -155,9 +150,6 @@ def mental_create(request):
             new_mental = mental_post_form.save(commit=False)
             # 指定登录的用户为作者
             new_mental.author = User.objects.get(id=request.user.id)
-            if request.POST['column'] != 'none':
-                # 保存文章栏目
-                new_mental.column = MentalColumn.objects.get(id=request.POST['column'])
             # 将新文章保存到数据库中
             new_mental.save()
             # 保存 tags 的多对多关系
@@ -171,10 +163,8 @@ def mental_create(request):
     else:
         # 创建表单类实例
         mental_post_form = MentalPostForm()
-        # 文章栏目
-        columns = MentalColumn.objects.all()
         # 赋值上下文
-        context = { 'mental_post_form': mental_post_form, 'columns': columns }
+        context = { 'mental_post_form': mental_post_form }
         # 返回模板
         return render(request, 'mental/create.html', context)
 
@@ -233,11 +223,6 @@ def mental_update(request, id):
             mental.title = request.POST['title']
             mental.body = request.POST['body']
 
-            if request.POST['column'] != 'none':
-                # 保存文章栏目
-                mental.column = MentalColumn.objects.get(id=request.POST['column'])
-            else:
-                mental.column = None
 
             if request.FILES.get('avatar'):
                 mental.avatar = request.FILES.get('avatar')
@@ -255,13 +240,10 @@ def mental_update(request, id):
         # 创建表单类实例
         mental_post_form = MentalPostForm()
 
-        # 文章栏目
-        columns = MentalColumn.objects.all()
         # 赋值上下文，将 mental 文章对象也传递进去，以便提取旧的内容
         context = { 
             'mental': mental, 
             'mental_post_form': mental_post_form,
-            'columns': columns,
             'tags': ','.join([x for x in mental.tags.names()]),
         }
 

@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 # 引入HttpResponse
 from django.http import HttpResponse
-# 导入数据模型AddictionPost, AddictionColumn
-from .models import AddictionPost, AddictionColumn
+# 导入数据模型AddictionPost
+from .models import AddictionPost
 # 引入刚才定义的AddictionPostForm表单类
 from .forms import AddictionPostForm
 # 引入markdown模块
@@ -37,7 +37,6 @@ def addiction_list(request):
     # 从 url 中提取查询参数
     search = request.GET.get('search')
     order = request.GET.get('order')
-    column = request.GET.get('column')
     tag = request.GET.get('tag')
 
     # 初始化查询集
@@ -52,10 +51,6 @@ def addiction_list(request):
     else:
         # 将 search 参数重置为空
         search = ''
-
-    # 栏目查询集
-    if column is not None and column.isdigit():
-        addiction_list = addiction_list.filter(column=column)
 
     # 标签查询集
     if tag and tag != 'None':
@@ -77,7 +72,6 @@ def addiction_list(request):
         'addictions': addictions,
         'order': order,
         'search': search,
-        'column': column,
         'tag': tag,
     }
     # render函数：载入模板，并返回context对象
@@ -154,9 +148,6 @@ def addiction_create(request):
             new_addiction = addiction_post_form.save(commit=False)
             # 指定登录的用户为作者
             new_addiction.author = User.objects.get(id=request.user.id)
-            if request.POST['column'] != 'none':
-                # 保存文章栏目
-                new_addiction.column = AddictionColumn.objects.get(id=request.POST['column'])
             # 将新文章保存到数据库中
             new_addiction.save()
             # 保存 tags 的多对多关系
@@ -170,10 +161,8 @@ def addiction_create(request):
     else:
         # 创建表单类实例
         addiction_post_form = AddictionPostForm()
-        # 文章栏目
-        columns = AddictionColumn.objects.all()
         # 赋值上下文
-        context = { 'addiction_post_form': addiction_post_form, 'columns': columns }
+        context = { 'addiction_post_form': addiction_post_form }
         # 返回模板
         return render(request, 'addiction/create.html', context)
 
@@ -232,12 +221,6 @@ def addiction_update(request, id):
             addiction.title = request.POST['title']
             addiction.body = request.POST['body']
 
-            if request.POST['column'] != 'none':
-                # 保存文章栏目
-                addiction.column = AddictionColumn.objects.get(id=request.POST['column'])
-            else:
-                addiction.column = None
-
             if request.FILES.get('avatar'):
                 addiction.avatar = request.FILES.get('avatar')
 
@@ -254,13 +237,10 @@ def addiction_update(request, id):
         # 创建表单类实例
         addiction_post_form = AddictionPostForm()
 
-        # 文章栏目
-        columns = AddictionColumn.objects.all()
         # 赋值上下文，将 addiction 文章对象也传递进去，以便提取旧的内容
         context = { 
             'addiction': addiction, 
             'addiction_post_form': addiction_post_form,
-            'columns': columns,
             'tags': ','.join([x for x in addiction.tags.names()]),
         }
 
