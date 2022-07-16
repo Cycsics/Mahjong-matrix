@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'comment_mental',
     'comment_addiction',
     'notice',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -209,7 +210,14 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 # 重定向 url
 LOGIN_REDIRECT_URL = '/'
-
+# 要求用户注册时必须填写email
+ACCOUNT_EMAIL_REQUIRED = False
+# 指定要使用的登录方法(用户名、电子邮件地址两者之一)
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+# needn't valid email
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+# forms template
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # LOGGING = {
 #     'version': 1,
 #     'handlers': {

@@ -121,7 +121,11 @@
             {% else %}
                 <br>
                 <h5 class="row justify-content-center">
+<<<<<<< HEAD
                     Please reply after <a href="{% url 'userprofile:login' %}">login</a> .
+=======
+                    请<a href="{% url 'account_login' %}">登录</a>后回复
+>>>>>>> 08299ced4fbbe4ec2cf3d8bb56a77f27bd0804e1
                 </h5>
                 <br>
             {% endif %}
@@ -176,7 +180,7 @@
                                     </button>
                                 {% else %}
                                     <a class="btn btn-light btn-sm text-muted" 
-                                        href="{% url 'userprofile:login' %}"
+                                        href="{% url 'account_login' %}"
                                     >
                                         Reply
                                     </a>
