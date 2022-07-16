@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block title %}登录{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                {% comment %} {{ form.as_p }} {% endcomment %}
+                {% comment %} {% if redirect_field_value %} {% endcomment %}
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                            id="id_username" class="form-control" />
+                <label for="id_email">Email(optional):</label>
+                <input type="email" name="email" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                            id="id_email" class="form-control" />
+                <label for="id_password1">Password:</label>
+                <input type="password" name="password1" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                                        id="id_password1" class="form-control" />
+                <label for="id_password2">Comfirm Password:</label>
+                <input type="password" name="password2" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                                        id="id_password2" class="form-control" />
+                {% comment %} {% endif %} {% endcomment %}
+                <br>
+                <button class="primaryAction btn btn-primary" type="submit" id="submit_login">确认</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
