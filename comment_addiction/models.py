@@ -7,17 +7,17 @@ from ckeditor.fields import RichTextField
 from mptt.models import MPTTModel, TreeForeignKey
 
 # 博文的评论
-class Comment(MPTTModel):
+class Comment_addiction(MPTTModel):
     addiction = models.ForeignKey(
         AddictionPost,
         on_delete=models.CASCADE,
-        related_name='comments'
+        related_name='comments_addiction'
     )
 
     user = models.ForeignKey(
         User, 
         on_delete=models.CASCADE, 
-        related_name='comments'
+        related_name='comments_addiction'
     )
 
     # mptt树形结构
@@ -35,7 +35,7 @@ class Comment(MPTTModel):
         null=True,
         blank=True,
         on_delete=models.CASCADE,
-        related_name='replyers'
+        related_name='replyers_addiction'
     )
 
     body = RichTextField()

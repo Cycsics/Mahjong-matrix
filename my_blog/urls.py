@@ -23,8 +23,10 @@ urlpatterns = [
     path('mental/', include('mental.urls', namespace='mental')),
     # 用户管理
     path('userprofile/', include('userprofile.urls', namespace='userprofile')),
-    # 评论
-    path('comment/', include('comment.urls', namespace='comment')),
+    # comment_addiction
+    path('comment_addiction/', include('comment_addiction.urls', namespace='comment_addiction')),
+    # comment_mental
+    path('comment_mental/', include('comment_mental.urls', namespace='comment_mental')),
     # djang-notifications
     path('inbox/notifications/', include(notifications.urls, namespace='notifications')),
     # notice

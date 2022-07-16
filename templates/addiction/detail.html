@@ -98,7 +98,7 @@
             {% if user.is_authenticated %}
                 <div>
                     <form 
-                        action="{% url 'comment:post_comment' addiction.id %}" 
+                        action="{% url 'comment_addiction:post_comment' addiction.id %}" 
                         method="POST"
                     >
                     {% csrf_token %}

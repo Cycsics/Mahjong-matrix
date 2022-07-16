@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'addiction',
     'mental',
     'userprofile',
-    'comment',
+    'comment_mental',
+    'comment_addiction',
     'notice',
 ]
 

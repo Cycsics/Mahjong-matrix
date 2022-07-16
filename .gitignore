@@ -5,3 +5,4 @@ blog
 __pycache__
 md
 *.sqlite3
+migrations

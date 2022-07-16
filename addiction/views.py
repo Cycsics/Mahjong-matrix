@@ -16,10 +16,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 # 引入搜索 Q 对象
 from django.db.models import Q
-# Comment 模型
-from comment.models import Comment
+# Comment_addiction 模型
+from comment_addiction.models import Comment_addiction
 
-from comment.forms import CommentForm
+from comment_addiction.forms import CommentForm_addiction
 
 # 通用类视图
 from django.views import View
@@ -93,7 +93,7 @@ def addiction_detail(request, id):
     addiction = get_object_or_404(AddictionPost, id=id)
     
     # 取出文章评论
-    comments = Comment.objects.filter(addiction=id)
+    comments = Comment_addiction.objects.filter(addiction=id)
 
     # 浏览量 +1
     addiction.total_views += 1

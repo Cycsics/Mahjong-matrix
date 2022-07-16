@@ -16,10 +16,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 # 引入搜索 Q 对象
 from django.db.models import Q
-# Comment 模型
-from comment.models import Comment
+# Comment_mental 模型
+from comment_mental.models import Comment_mental
 
-from comment.forms import CommentForm
+from comment_mental.forms import CommentForm_mental
 
 # 通用类视图
 from django.views import View
@@ -93,7 +93,7 @@ def mental_detail(request, id):
     mental = get_object_or_404(MentalPost, id=id)
     
     # 取出文章评论
-    comments = Comment.objects.filter(mental=id)
+    comments = Comment_mental.objects.filter(mental=id)
 
     # 浏览量 +1
     mental.total_views += 1
@@ -127,7 +127,7 @@ def mental_detail(request, id):
     mental.body = md.convert(mental.body)
 
     # 为评论引入表单
-    comment_form = CommentForm()
+    comment_form = CommentForm_mental()()
 
     # 需要传递给模板的对象
     context = { 
