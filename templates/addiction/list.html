@@ -12,12 +12,12 @@
 {% block content %}
 
 <!-- 定义放置文章标题的div容器 -->
-<div class="container">
+<div class="container" >
     <!-- 面包屑导航 -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{% url 'addiction:addiction_list' %}?search={{ search }}&column={{ column }}&tag={{ tag }}">
+                <a href="{% url 'addiction:addiction_list' %}?search={{ search }}&column={{ column }}&tag={{ tag }}"   style="backgroud-color:rgb(110,139,61,0.8);opacity:0.5">
                     Latest
                 </a>
             </li>
@@ -129,7 +129,7 @@
     </div>
 
     <!-- 页码导航 -->
-    <div class="pagination row">
+    <div class="pagination row" style="position: absolute; bottom:10vh; left:50%; background-color:rgba(163,224,110,0.5);opacity:0.3" >
         <div class="m-auto">
             <span class="step-links">
                 <!-- 如果不是第一页，则显示上翻按钮 -->

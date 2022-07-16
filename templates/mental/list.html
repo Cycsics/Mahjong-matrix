@@ -17,12 +17,12 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{% url 'mental:mental_list' %}?search={{ search }}&column={{ column }}&tag={{ tag }}">
+                <a href="{% url 'mental:mental_list' %}?search={{ search }}&column={{ column }}&tag={{ tag }}" style="color:#007bff">
                     Latest
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{% url 'mental:mental_list' %}?order=total_views&search={{ search }}&column={{ column }}&tag={{ tag }}">
+                <a href="{% url 'mental:mental_list' %}?order=total_views&search={{ search }}&column={{ column }}&tag={{ tag }}" style="color:#007bff">
                     Hottest
                 </a>
             </li>
@@ -129,7 +129,7 @@
     </div>
 
     <!-- 页码导航 -->
-    <div class="pagination row">
+    <div class="pagination row" style="position: absolute; bottom:10vh; left:50%">
         <div class="m-auto">
             <span class="step-links">
                 <!-- 如果不是第一页，则显示上翻按钮 -->
