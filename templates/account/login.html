@@ -15,8 +15,7 @@
 
             {% if socialaccount_providers %}
             <p>
-                {% blocktrans with site.name as site_name %}请登录已有本地账号或<a href="{{ signup_url }}">注册</a>新账号。
-                也可以通过第三方登录:{% endblocktrans %}
+                {% blocktrans with site.name as site_name %}Please sign in or<a href="{{ signup_url }}">Sign up</a>a new account。
             </p>
 
             <div class="socialaccount_ballot">
@@ -24,7 +23,7 @@
                 <ul class="socialaccount_providers">
                   {% include "socialaccount/snippets/provider_list.html" with process="login" %}
                 </ul>
-                <h5 class="mb-2 mt-4">本地登录：</h5>
+                <h5 class="mb-2 mt-4">Local login</h5>
             </div>
 
             {% include "socialaccount/snippets/login_extra.html" %}
@@ -37,35 +36,35 @@
                 <form class="login" id="login_form" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="id_login">账号: </label>
-                        <input type="text" name="login" placeholder="请输入用户名或Email" autofocus="autofocus" required
+                        <label for="id_login">Username: </label>
+                        <input type="text" name="login" placeholder="Please enter Username or Email" autofocus="autofocus" required
                             id="id_login" class="form-control" />
                         <small class="form-text text-muted ml-1">
-                            还没有账号？
+                            Don't have an account yet？
                             <a href="{% url 'account_signup' %}" style="color: cornflowerblue; ">
-                                注册新账号
+                                Sign up a new account
                             </a>
                         </small>
                     </div>
                     <div class="form-group mb-1">
                         <label for="id_password">
-                            密码:
+                            Password:
                         </label>
-                        <input type="password" name="password" placeholder="请输入密码" required id="id_password"
+                        <input type="password" name="password" placeholder="Please enter you password" required id="id_password"
                             class="form-control" />
                         <small class="form-text text-muted ml-1">
                             <a class="secondaryAction layui-text" href="{% url 'account_reset_password' %}">
-                                忘记密码?
+                                Forget you password?
                             </a>
                         </small>
                     </div>
                     <div class="custom-control custom-checkbox mb-2">
                         <input type="checkbox" name="remember" id="id_remember" checked class="custom-control-input" />
                         <label for="id_remember" class="custom-control-label">
-                            保持登录
+                            Stay logged in
                         </label>
                     </div>
-                    <button class="primaryAction btn btn-primary" type="submit" id="submit_login">确认</button>
+                    <button class="primaryAction btn btn-primary" type="submit" id="submit_login">SUbmit</button>
                 </form>
             </div>
         </div>
